@@ -1,0 +1,241 @@
+
+//To create a New Database
+>use mydbs
+
+//To show Avaialable database
+>show dbs
+
+//To create a collection in a database
+> db.createCollection('Author1');
+{ "ok" : 1 }
+
+//To show collections
+> show collections
+Author
+Author1
+collection
+system.indexes
+
+> var authorA= {
+		"authorid":101,
+		 "authorname":"Rod Johnson",
+		 "dop":"20-10-2014",
+		 "book":{
+				"book1":{"bookid":"1201","name":"The Subtle Art", "price":250},
+				"book2":{"bookid":"1202","name":"The Subtle Art", "price":240},
+				"book3":{"bookid":"1204","name":"The Subtle Art", "price":270},
+		  }					
+};	
+
+> db.Author.insert(authorA);
+		
+> db.Author.findOne();
+{
+        "_id" : ObjectId("5b7124577735a9d468af340a"),
+        "author1" : {
+                "authorid" : "A201",
+                "authorname" : "Shakespeare",
+                "dop" : 0.00011019283746556474,
+                "book" : {
+                        "bookid" : "1201",
+                        "name" : "Merchant of Venice",
+                        "price" : 700
+                }
+        },
+        "author2" : {
+                "authorid" : "A202",
+                "authorname" : "Durjoy Dutta",
+                "dop" : 0.0003313452617627568,
+                "book" : {
+                        "bookid" : "1203",
+                        "name" : "She Broke Up I didnt",
+                        "price" : 500
+                }
+        },
+        "author3" : {
+                "authorid" : "A203",
+                "authorname" : "Arundhati Roy",
+                "dop" : 0.00175,
+                "book" : {
+                        "bookid" : "1207",
+                        "name" : "God of small things",
+                        "price" : 1000
+                }
+        }
+}
+
+
+> author=
+... {
+... author1:{
+... authorid:"A201",
+... authorname:"Shakespeare",
+... dop:01/05/1815,
+... book:{"bookid":"1201","name":"Merchant of Venice","price":700}
+... }
+... };
+{
+        "author1" : {
+                "authorid" : "A201",
+                "authorname" : "Shakespeare",
+                "dop" : 0.00011019283746556474,
+                "book" : {
+                        "bookid" : "1201",
+                        "name" : "Merchant of Venice",
+                        "price" : 700
+                }
+        }
+}
+> db.Author1.insert(author)
+WriteResult({ "nInserted" : 1 })
+> db.Author1.findOne();
+{
+        "_id" : ObjectId("5b7128697735a9d468af340c"),
+        "author1" : {
+                "authorid" : "A201",
+                "authorname" : "Shakespeare",
+                "dop" : 0.00011019283746556474,
+                "book" : {
+                        "bookid" : "1201",
+                        "name" : "Merchant of Venice",
+                        "price" : 700
+                }
+        }
+}
+> db.Author1.update({authorid:"A202"});
+2018-08-13T12:13:41.884+0530 E QUERY    Error: need an object
+    at Error (<anonymous>)
+    at DBCollection._parseUpdate (src/mongo/shell/collection.js:400:21)
+    at DBCollection.update (src/mongo/shell/collection.js:432:23)
+    at (shell):1:12 at src/mongo/shell/collection.js:400
+> db.Author1.update({authorid:"A202"},{authorname="Ram"});
+2018-08-13T12:14:37.604+0530 E QUERY    SyntaxError: Unexpected token =
+> db.Author1.update({authorid:"A202"},{authorname:"Ram"});
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.Author1.help
+function () {
+    var shortName = this.getName();
+    print("DBCollection help");
+    print("\tdb." + shortName + ".find().help() - show DBCursor help");
+    print("\tdb." + shortName + ".count()");
+    print("\tdb." + shortName + ".copyTo(newColl) - duplicates collection by copying all documents to newColl; no indexes are copied.");
+    print("\tdb." + shortName + ".convertToCapped(maxBytes) - calls {convertToCapped:'" + shortName + "', size:maxBytes}} command");
+    print("\tdb." + shortName + ".dataSize()");
+    print("\tdb." + shortName + ".distinct( key ) - e.g. db." + shortName + ".distinct( 'x' )");
+    print("\tdb." + shortName + ".drop() drop the collection");
+    print("\tdb." + shortName + ".dropIndex(index) - e.g. db." + shortName + ".dropIndex( \"indexName\" ) or db." + shortName + ".dropIndex( { \"indexKey\"
+: 1 } )");
+    print("\tdb." + shortName + ".dropIndexes()");
+    print("\tdb." + shortName + ".ensureIndex(keypattern[,options])");
+    print("\tdb." + shortName + ".explain().help() - show explain help");
+    print("\tdb." + shortName + ".reIndex()");
+    print("\tdb." + shortName + ".find([query],[fields]) - query is an optional query filter. fields is optional set of fields to return.");
+    print("\t                                              e.g. db." + shortName + ".find( {x:77} , {name:1, x:1} )");
+    print("\tdb." + shortName + ".find(...).count()");
+    print("\tdb." + shortName + ".find(...).limit(n)");
+    print("\tdb." + shortName + ".find(...).skip(n)");
+    print("\tdb." + shortName + ".find(...).sort(...)");
+    print("\tdb." + shortName + ".findOne([query])");
+    print("\tdb." + shortName + ".findAndModify( { update : ... , remove : bool [, query: {}, sort: {}, 'new': false] } )");
+    print("\tdb." + shortName + ".getDB() get DB object associated with collection");
+    print("\tdb." + shortName + ".getPlanCache() get query plan cache associated with collection");
+    print("\tdb." + shortName + ".getIndexes()");
+    print("\tdb." + shortName + ".group( { key : ..., initial: ..., reduce : ...[, cond: ...] } )");
+    // print("\tdb." + shortName + ".indexStats({expandNodes: [<expanded child numbers>}, <detailed: t/f>) - output aggregate/per-depth btree bucket stats")
+;
+    print("\tdb." + shortName + ".insert(obj)");
+    print("\tdb." + shortName + ".mapReduce( mapFunction , reduceFunction , <optional params> )");
+    print("\tdb." + shortName + ".aggregate( [pipeline], <optional params> ) - performs an aggregation on a collection; returns a cursor");
+    print("\tdb." + shortName + ".remove(query)");
+    print("\tdb." + shortName + ".renameCollection( newName , <dropTarget> ) renames the collection.");
+    print("\tdb." + shortName + ".runCommand( name , <options> ) runs a db command with the given name where the first param is the collection name");
+    print("\tdb." + shortName + ".save(obj)");
+    print("\tdb." + shortName + ".stats({scale: N, indexDetails: true/false, " +
+          "indexDetailsKey: <index key>, indexDetailsName: <index name>})");
+    // print("\tdb." + shortName + ".diskStorageStats({[extent: <num>,] [granularity: <bytes>,] ...}) - analyze record layout on disk");
+    // print("\tdb." + shortName + ".pagesInRAM({[extent: <num>,] [granularity: <bytes>,] ...}) - analyze resident memory pages");
+    print("\tdb." + shortName + ".storageSize() - includes free space allocated to this collection");
+    print("\tdb." + shortName + ".totalIndexSize() - size in bytes of all the indexes");
+    print("\tdb." + shortName + ".totalSize() - storage allocated for all data and indexes");
+    print("\tdb." + shortName + ".update(query, object[, upsert_bool, multi_bool]) - instead of two flags, you can pass an object with fields: upsert, multi
+");
+    print("\tdb." + shortName + ".validate( <full> ) - SLOW");;
+    // print("\tdb." + shortName + ".getIndexStats({expandNodes: [<expanded child numbers>}, <detailed: t/f>) - same as .indexStats but prints a human reada
+ble summary of the output");
+    print("\tdb." + shortName + ".getShardVersion() - only for use with sharding");
+    print("\tdb." + shortName + ".getShardDistribution() - prints statistics about data distribution in the cluster");
+    print("\tdb." + shortName + ".getSplitKeysForChunks( <maxChunkSize> ) - calculates split points over all chunks and returns splitter function");
+    print("\tdb." + shortName + ".getWriteConcern() - returns the write concern used for any operations on this collection, inherited from server/db if set"
+);
+    print("\tdb." + shortName + ".setWriteConcern( <write concern doc> ) - sets the write concern for writes to the collection");
+    print("\tdb." + shortName + ".unsetWriteConcern( <write concern doc> ) - unsets the write concern for writes to the collection");
+    // print("\tdb." + shortName + ".getDiskStorageStats({...}) - prints a summary of disk usage statistics");
+    // print("\tdb." + shortName + ".getPagesInRAM({...}) - prints a summary of storage pages currently in physical memory");
+    return __magicNoPrint;
+}
+> db.Author1.drop()
+true
+> show collections
+Author
+collection
+system.indexes
+> db.createCollection(Author1);
+2018-08-13T12:18:48.239+0530 E QUERY    ReferenceError: Author1 is not defined
+    at (shell):1:21
+> db.createCollection("Author1");
+{ "ok" : 1 }
+> show collections
+Author
+Author1
+collection
+system.indexes
+> author=
+... {
+... author1:{
+... authorid:"A201",
+... authorname:"Shakespeare",
+... dop:01/05/1815,
+... book:{"bookid":"1201","name":"Merchant of Venice","price":700}
+... }
+... db.Author1.help
+...
+...
+> db.Author.remove({authorid:"A201"})
+WriteResult({ "nRemoved" : 0 })
+> db.Author.findOne()_;
+2018-08-13T12:21:16.654+0530 E QUERY    SyntaxError: Unexpected identifier
+> db.Author.findOne()
+{
+        "_id" : ObjectId("5b7124577735a9d468af340a"),
+        "author1" : {
+                "authorid" : "A201",
+                "authorname" : "Shakespeare",
+                "dop" : 0.00011019283746556474,
+                "book" : {
+                        "bookid" : "1201",
+                        "name" : "Merchant of Venice",
+                        "price" : 700
+                }
+        },
+        "author2" : {
+                "authorid" : "A202",
+                "authorname" : "Durjoy Dutta",
+                "dop" : 0.0003313452617627568,
+                "book" : {
+                        "bookid" : "1203",
+                        "name" : "She Broke Up I didnt",
+                        "price" : 500
+                }
+        },
+        "author3" : {
+                "authorid" : "A203",
+                "authorname" : "Arundhati Roy",
+                "dop" : 0.00175,
+                "book" : {
+                        "bookid" : "1207",
+                        "name" : "God of small things",
+                        "price" : 1000
+                }
+        }
+}
+>

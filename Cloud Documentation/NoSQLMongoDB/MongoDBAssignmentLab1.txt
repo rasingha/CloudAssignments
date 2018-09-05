@@ -1,0 +1,802 @@
+1.15 > db.ProductCollection.find({"price":{$gt:5000}}).pretty();
+{
+        "_id" : 2,
+        "item" : "Mobile",
+        "prodCat" : "Electronics",
+        "price" : 6000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O002",
+                "orderdate" : ISODate("2010-03-12T00:00:00Z"),
+                "address" : {
+                        "street" : "FC Road",
+                        "city" : "Pune",
+                        "state" : "MS",
+                        "zipcode" : 40081,
+                        "coords" : [
+                                -23.80007,
+                                30.1123456
+                        ]
+                },
+                "email" : "icres@ibm.com",
+                "mobiles" : [
+                        9856342189,
+                        4563217895
+                ]
+        }
+}
+{
+        "_id" : 5,
+        "item" : "TV",
+        "prodCat" : "Electronics",
+        "price" : 24000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O003",
+                "orderdate" : ISODate("2012-06-17T00:00:00Z"),
+                "address" : {
+                        "street" : "GT Road",
+                        "city" : "Sahibabad",
+                        "state" : "UP",
+                        "zipcode" : 567777,
+                        "coords" : [
+                                -11.80007,
+                                13.1123456
+                        ]
+                },
+                "email" : "techm@techm.com",
+                "mobiles" : [
+                        7865452222
+                ]
+        }
+}
+{
+        "_id" : 7,
+        "item" : "TV",
+        "prodCat" : "Jewellery",
+        "price" : 24000,
+        "quantity" : 1,
+        "orderInfo" : {
+                "_id" : "O015",
+                "orderdate" : ISODate("2012-06-17T00:00:00Z"),
+                "address" : {
+                        "street" : "GT Road",
+                        "city" : "Sahibabad",
+                        "state" : "UP",
+                        "zipcode" : 567777,
+                        "coords" : [
+                                -11.80007,
+                                13.1123456
+                        ]
+                },
+                "email" : "techm@techm.com",
+                "mobiles" : [
+                        7865452222
+                ]
+        }
+}
+
+1.16 > db.ProductCollection.find({"price":{$gt:5000}},{item:1,prodCat:1,price:1,_id:0}).pretty();
+{ "item" : "Mobile", "prodCat" : "Electronics", "price" : 6000 }
+{ "item" : "TV", "prodCat" : "Electronics", "price" : 24000 }
+{ "item" : "TV", "prodCat" : "Jewellery", "price" : 24000 }
+{ "item" : "Shirt", "prodCat" : "Clothing", "price" : 12000 }
+
+1.17 > db.ProductCollection.find({"price":{$gt:5000}},{item:1,prodCat:1,price:1,_id:0}).limit(3).pretty();
+{ "item" : "Mobile", "prodCat" : "Electronics", "price" : 6000 }
+{ "item" : "TV", "prodCat" : "Electronics", "price" : 24000 }
+{ "item" : "TV", "prodCat" : "Jewellery", "price" : 24000 }
+
+1.18 > db.ProductCollection.find({"orderInfo.address.state":"MS"}).pretty();
+{
+        "_id" : 1,
+        "prodCat" : "Electronics",
+        "price" : 5000,
+        "quantity" : 2,
+        "orderInfo" : {
+                "_id" : "O001",
+                "orderdate" : ISODate("2014-01-01T00:00:00Z"),
+                "address" : {
+                        "street" : "66,Airoli",
+                        "city" : "Mumbai",
+                        "state" : "MS",
+                        "zipcode" : 700987,
+                        "coords" : [
+                                -73.856077,
+                                40.848447
+                        ]
+                },
+                "email" : "capgemini@capgemini.com",
+                "mobiles" : [
+                        8888108810
+                ]
+        },
+        "ProductName" : "Laptop"
+}
+{
+        "_id" : 2,
+        "item" : "Mobile",
+        "prodCat" : "Electronics",
+        "price" : 6000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O002",
+                "orderdate" : ISODate("2010-03-12T00:00:00Z"),
+                "address" : {
+                        "street" : "FC Road",
+                        "city" : "Pune",
+                        "state" : "MS",
+                        "zipcode" : 40081,
+                        "coords" : [
+                                -23.80007,
+                                30.1123456
+                        ]
+                },
+                "email" : "icres@ibm.com",
+                "mobiles" : [
+                        9856342189,
+                        4563217895
+                ]
+        }
+}
+{
+        "_id" : 3,
+        "item" : "Pen",
+        "prodCat" : "Stationary",
+        "price" : 25,
+        "quantity" : 5,
+        "orderInfo" : {
+                "_id" : "O005",
+                "orderdate" : ISODate("2015-01-01T00:00:00Z"),
+                "address" : {
+                        "street" : "66,Airoli",
+                        "city" : "Mumbai",
+                        "state" : "MS",
+                        "zipcode" : 700987,
+                        "coords" : [
+                                -73.856077,
+                                40.848447
+                        ]
+                },
+                "email" : "capgemini@capgemini.com",
+                "mobiles" : [
+                        8888108810
+                ]
+        },
+        "orderstatus" : [
+                "pending"
+        ]
+}
+
+1.19  > db.ProductCollection.find().sort({"price":-1}).pretty();
+{
+        "_id" : 5,
+        "item" : "TV",
+        "prodCat" : "Electronics",
+        "price" : 24000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O003",
+                "orderdate" : ISODate("2012-06-17T00:00:00Z"),
+                "address" : {
+                        "street" : "GT Road",
+                        "city" : "Sahibabad",
+                        "state" : "UP",
+                        "zipcode" : 567777,
+                        "coords" : [
+                                -11.80007,
+                                13.1123456
+                        ]
+                },
+                "email" : "techm@techm.com",
+                "mobiles" : [
+                        7865452222
+                ]
+        }
+}
+{
+        "_id" : 7,
+        "item" : "TV",
+        "prodCat" : "Jewellery",
+        "price" : 24000,
+        "quantity" : 1,
+        "orderInfo" : {
+                "_id" : "O015",
+                "orderdate" : ISODate("2012-06-17T00:00:00Z"),
+                "address" : {
+                        "street" : "GT Road",
+                        "city" : "Sahibabad",
+                        "state" : "UP",
+                        "zipcode" : 567777,
+                        "coords" : [
+                                -11.80007,
+                                13.1123456
+                        ]
+                },
+                "email" : "techm@techm.com",
+                "mobiles" : [
+                        7865452222
+                ]
+        }
+}
+{
+        "_id" : 8,
+        "item" : "Shirt",
+        "prodCat" : "Clothing",
+        "price" : 12000,
+        "quantity" : 6,
+        "orderInfo" : {
+                "_id" : "O004",
+                "orderdate" : ISODate("2010-05-16T00:00:00Z"),
+                "address" : {
+                        "street" : "Salt Lake",
+                        "city" : "Kolkata",
+                        "state" : "West Bengol",
+                        "zipcode" : 222224,
+                        "coords" : [
+                                -67.850007,
+                                9.456666
+                        ]
+                },
+                "email" : "vaishali@gmail.com",
+                "mobiles" : [
+                        8888108850,
+                        9402312123
+                ]
+        }
+}
+{
+        "_id" : 2,
+        "item" : "Mobile",
+        "prodCat" : "Electronics",
+        "price" : 6000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O002",
+                "orderdate" : ISODate("2010-03-12T00:00:00Z"),
+                "address" : {
+                        "street" : "FC Road",
+                        "city" : "Pune",
+                        "state" : "MS",
+                        "zipcode" : 40081,
+                        "coords" : [
+                                -23.80007,
+                                30.1123456
+                        ]
+                },
+                "email" : "icres@ibm.com",
+                "mobiles" : [
+                        9856342189,
+                        4563217895
+                ]
+        }
+}
+{
+        "_id" : 1,
+        "prodCat" : "Electronics",
+        "price" : 5000,
+        "quantity" : 2,
+        "orderInfo" : {
+                "_id" : "O001",
+                "orderdate" : ISODate("2014-01-01T00:00:00Z"),
+                "address" : {
+                        "street" : "66,Airoli",
+                        "city" : "Mumbai",
+                        "state" : "MS",
+                        "zipcode" : 700987,
+                        "coords" : [
+                                -73.856077,
+                                40.848447
+                        ]
+                },
+                "email" : "capgemini@capgemini.com",
+                "mobiles" : [
+                        8888108810
+                ]
+        },
+        "ProductName" : "Laptop"
+}
+{
+        "_id" : 6,
+        "item" : "Bangles",
+        "prodCat" : "Jewellery",
+        "price" : 4000,
+        "quantity" : 1,
+        "orderInfo" : {
+                "_id" : "O004",
+                "orderdate" : ISODate("2010-05-16T00:00:00Z"),
+                "address" : {
+                        "street" : "Salt Lake",
+                        "city" : "Kolkata",
+                        "state" : "West Bengol",
+                        "zipcode" : 222224,
+                        "coords" : [
+                                -67.850007,
+                                9.456666
+                        ]
+                },
+                "email" : "vaishali@gmail.com",
+                "mobiles" : [
+                        8888108850,
+                        9402312123
+                ]
+        }
+}
+{
+        "_id" : 3,
+        "item" : "Pen",
+        "prodCat" : "Stationary",
+        "price" : 25,
+        "quantity" : 5,
+        "orderInfo" : {
+                "_id" : "O005",
+                "orderdate" : ISODate("2015-01-01T00:00:00Z"),
+                "address" : {
+                        "street" : "66,Airoli",
+                        "city" : "Mumbai",
+                        "state" : "MS",
+                        "zipcode" : 700987,
+                        "coords" : [
+                                -73.856077,
+                                40.848447
+                        ]
+                },
+                "email" : "capgemini@capgemini.com",
+                "mobiles" : [
+                        8888108810
+                ]
+        },
+        "orderstatus" : [
+                "pending"
+        ]
+}
+
+1.20 > db.ProductCollection.find().sort({"prodCat":1}).pretty();
+{
+        "_id" : 8,
+        "item" : "Shirt",
+        "prodCat" : "Clothing",
+        "price" : 12000,
+        "quantity" : 6,
+        "orderInfo" : {
+                "_id" : "O004",
+                "orderdate" : ISODate("2010-05-16T00:00:00Z"),
+                "address" : {
+                        "street" : "Salt Lake",
+                        "city" : "Kolkata",
+                        "state" : "West Bengol",
+                        "zipcode" : 222224,
+                        "coords" : [
+                                -67.850007,
+                                9.456666
+                        ]
+                },
+                "email" : "vaishali@gmail.com",
+                "mobiles" : [
+                        8888108850,
+                        9402312123
+                ]
+        }
+}
+{
+        "_id" : 1,
+        "prodCat" : "Electronics",
+        "price" : 5000,
+        "quantity" : 2,
+        "orderInfo" : {
+                "_id" : "O001",
+                "orderdate" : ISODate("2014-01-01T00:00:00Z"),
+                "address" : {
+                        "street" : "66,Airoli",
+                        "city" : "Mumbai",
+                        "state" : "MS",
+                        "zipcode" : 700987,
+                        "coords" : [
+                                -73.856077,
+                                40.848447
+                        ]
+                },
+                "email" : "capgemini@capgemini.com",
+                "mobiles" : [
+                        8888108810
+                ]
+        },
+        "ProductName" : "Laptop"
+}
+{
+        "_id" : 2,
+        "item" : "Mobile",
+        "prodCat" : "Electronics",
+        "price" : 6000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O002",
+                "orderdate" : ISODate("2010-03-12T00:00:00Z"),
+                "address" : {
+                        "street" : "FC Road",
+                        "city" : "Pune",
+                        "state" : "MS",
+                        "zipcode" : 40081,
+                        "coords" : [
+                                -23.80007,
+                                30.1123456
+                        ]
+                },
+                "email" : "icres@ibm.com",
+                "mobiles" : [
+                        9856342189,
+                        4563217895
+                ]
+        }
+}
+{
+        "_id" : 5,
+        "item" : "TV",
+        "prodCat" : "Electronics",
+        "price" : 24000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O003",
+                "orderdate" : ISODate("2012-06-17T00:00:00Z"),
+                "address" : {
+                        "street" : "GT Road",
+                        "city" : "Sahibabad",
+                        "state" : "UP",
+                        "zipcode" : 567777,
+                        "coords" : [
+                                -11.80007,
+                                13.1123456
+                        ]
+                },
+                "email" : "techm@techm.com",
+                "mobiles" : [
+                        7865452222
+                ]
+        }
+}
+{
+        "_id" : 6,
+        "item" : "Bangles",
+        "prodCat" : "Jewellery",
+        "price" : 4000,
+        "quantity" : 1,
+        "orderInfo" : {
+                "_id" : "O004",
+                "orderdate" : ISODate("2010-05-16T00:00:00Z"),
+                "address" : {
+                        "street" : "Salt Lake",
+                        "city" : "Kolkata",
+                        "state" : "West Bengol",
+                        "zipcode" : 222224,
+                        "coords" : [
+                                -67.850007,
+                                9.456666
+                        ]
+                },
+                "email" : "vaishali@gmail.com",
+                "mobiles" : [
+                        8888108850,
+                        9402312123
+                ]
+        }
+}
+{
+        "_id" : 7,
+        "item" : "TV",
+        "prodCat" : "Jewellery",
+        "price" : 24000,
+        "quantity" : 1,
+        "orderInfo" : {
+                "_id" : "O015",
+                "orderdate" : ISODate("2012-06-17T00:00:00Z"),
+                "address" : {
+                        "street" : "GT Road",
+                        "city" : "Sahibabad",
+                        "state" : "UP",
+                        "zipcode" : 567777,
+                        "coords" : [
+                                -11.80007,
+                                13.1123456
+                        ]
+                },
+                "email" : "techm@techm.com",
+                "mobiles" : [
+                        7865452222
+                ]
+        }
+}
+{
+        "_id" : 3,
+        "item" : "Pen",
+        "prodCat" : "Stationary",
+        "price" : 25,
+        "quantity" : 5,
+        "orderInfo" : {
+                "_id" : "O005",
+                "orderdate" : ISODate("2015-01-01T00:00:00Z"),
+                "address" : {
+                        "street" : "66,Airoli",
+                        "city" : "Mumbai",
+                        "state" : "MS",
+                        "zipcode" : 700987,
+                        "coords" : [
+                                -73.856077,
+                                40.848447
+                        ]
+                },
+                "email" : "capgemini@capgemini.com",
+                "mobiles" : [
+                        8888108810
+                ]
+        },
+        "orderstatus" : [
+                "pending"
+        ]
+}
+
+		
+1.21 > db.ProductCollection.find().limit(3).pretty();
+{
+        "_id" : 1,
+        "prodCat" : "Electronics",
+        "price" : 5000,
+        "quantity" : 2,
+        "orderInfo" : {
+                "_id" : "O001",
+                "orderdate" : ISODate("2014-01-01T00:00:00Z"),
+                "address" : {
+                        "street" : "66,Airoli",
+                        "city" : "Mumbai",
+                        "state" : "MS",
+                        "zipcode" : 700987,
+                        "coords" : [
+                                -73.856077,
+                                40.848447
+                        ]
+                },
+                "email" : "capgemini@capgemini.com",
+                "mobiles" : [
+                        8888108810
+                ]
+        },
+        "ProductName" : "Laptop"
+}
+{
+        "_id" : 2,
+        "item" : "Mobile",
+        "prodCat" : "Electronics",
+        "price" : 6000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O002",
+                "orderdate" : ISODate("2010-03-12T00:00:00Z"),
+                "address" : {
+                        "street" : "FC Road",
+                        "city" : "Pune",
+                        "state" : "MS",
+                        "zipcode" : 40081,
+                        "coords" : [
+                                -23.80007,
+                                30.1123456
+                        ]
+                },
+                "email" : "icres@ibm.com",
+                "mobiles" : [
+                        9856342189,
+                        4563217895
+                ]
+        }
+}
+{
+        "_id" : 5,
+        "item" : "TV",
+        "prodCat" : "Electronics",
+        "price" : 24000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O003",
+                "orderdate" : ISODate("2012-06-17T00:00:00Z"),
+                "address" : {
+                        "street" : "GT Road",
+                        "city" : "Sahibabad",
+                        "state" : "UP",
+                        "zipcode" : 567777,
+                        "coords" : [
+                                -11.80007,
+                                13.1123456
+                        ]
+                },
+                "email" : "techm@techm.com",
+                "mobiles" : [
+                        7865452222
+                ]
+        }
+}
+
+1.23 > db.ProductCollection.find({$or:[{"orderInfo.address.state":"MS"},{"orderInfo.address.state":"UP"}]}).pretty();
+{
+        "_id" : 1,
+        "prodCat" : "Electronics",
+        "price" : 5000,
+        "quantity" : 2,
+        "orderInfo" : {
+                "_id" : "O001",
+                "orderdate" : ISODate("2014-01-01T00:00:00Z"),
+                "address" : {
+                        "street" : "66,Airoli",
+                        "city" : "Mumbai",
+                        "state" : "MS",
+                        "zipcode" : 700987,
+                        "coords" : [
+                                -73.856077,
+                                40.848447
+                        ]
+                },
+                "email" : "capgemini@capgemini.com",
+                "mobiles" : [
+                        8888108810
+                ]
+        },
+        "ProductName" : "Laptop"
+}
+{
+        "_id" : 2,
+        "item" : "Mobile",
+        "prodCat" : "Electronics",
+        "price" : 6000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O002",
+                "orderdate" : ISODate("2010-03-12T00:00:00Z"),
+                "address" : {
+                        "street" : "FC Road",
+                        "city" : "Pune",
+                        "state" : "MS",
+                        "zipcode" : 40081,
+                        "coords" : [
+                                -23.80007,
+                                30.1123456
+                        ]
+                },
+                "email" : "icres@ibm.com",
+                "mobiles" : [
+                        9856342189,
+                        4563217895
+                ]
+        }
+}
+{
+        "_id" : 5,
+        "item" : "TV",
+        "prodCat" : "Electronics",
+        "price" : 24000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O003",
+                "orderdate" : ISODate("2012-06-17T00:00:00Z"),
+                "address" : {
+                        "street" : "GT Road",
+                        "city" : "Sahibabad",
+                        "state" : "UP",
+                        "zipcode" : 567777,
+                        "coords" : [
+                                -11.80007,
+                                13.1123456
+                        ]
+                },
+                "email" : "techm@techm.com",
+                "mobiles" : [
+                        7865452222
+                ]
+        }
+}
+{
+        "_id" : 3,
+        "item" : "Pen",
+        "prodCat" : "Stationary",
+        "price" : 25,
+        "quantity" : 5,
+        "orderInfo" : {
+                "_id" : "O005",
+                "orderdate" : ISODate("2015-01-01T00:00:00Z"),
+                "address" : {
+                        "street" : "66,Airoli",
+                        "city" : "Mumbai",
+                        "state" : "MS",
+                        "zipcode" : 700987,
+                        "coords" : [
+                                -73.856077,
+                                40.848447
+                        ]
+                },
+                "email" : "capgemini@capgemini.com",
+                "mobiles" : [
+                        8888108810
+                ]
+        },
+        "orderstatus" : [
+                "pending"
+        ]
+}
+{
+        "_id" : 7,
+        "item" : "TV",
+        "prodCat" : "Jewellery",
+        "price" : 24000,
+        "quantity" : 1,
+        "orderInfo" : {
+                "_id" : "O015",
+                "orderdate" : ISODate("2012-06-17T00:00:00Z"),
+                "address" : {
+                        "street" : "GT Road",
+                        "city" : "Sahibabad",
+                        "state" : "UP",
+                        "zipcode" : 567777,
+                        "coords" : [
+                                -11.80007,
+                                13.1123456
+                        ]
+                },
+                "email" : "techm@techm.com",
+                "mobiles" : [
+                        7865452222
+                ]
+        }
+}
+
+1.24 > db.ProductCollection.find({$and:[{"price":{$gt:5000}},{"orderInfo.address.state":"MS"}]}).pretty();
+{
+        "_id" : 2,
+        "item" : "Mobile",
+        "prodCat" : "Electronics",
+        "price" : 6000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O002",
+                "orderdate" : ISODate("2010-03-12T00:00:00Z"),
+                "address" : {
+                        "street" : "FC Road",
+                        "city" : "Pune",
+                        "state" : "MS",
+                        "zipcode" : 40081,
+                        "coords" : [
+                                -23.80007,
+                                30.1123456
+                        ]
+                },
+                "email" : "icres@ibm.com",
+                "mobiles" : [
+                        9856342189,
+                        4563217895
+                ]
+        }
+}
+
+1.25 > db.ProductCollection.find({$and:[{"prodCat":"Electronics"},{"orderInfo.address.city":"Pune"}]}).pretty();
+{
+        "_id" : 2,
+        "item" : "Mobile",
+        "prodCat" : "Electronics",
+        "price" : 6000,
+        "quantity" : 10,
+        "orderInfo" : {
+                "_id" : "O002",
+                "orderdate" : ISODate("2010-03-12T00:00:00Z"),
+                "address" : {
+                        "street" : "FC Road",
+                        "city" : "Pune",
+                        "state" : "MS",
+                        "zipcode" : 40081,
+                        "coords" : [
+                                -23.80007,
+                                30.1123456
+                        ]
+                },
+                "email" : "icres@ibm.com",
+                "mobiles" : [
+                        9856342189,
+                        4563217895
+                ]
+        }
+}
+

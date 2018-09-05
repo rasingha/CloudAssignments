@@ -1,0 +1,153 @@
+
+[ec2-user@ip-172-31-89-65 ~]$ sudo yum install -y docker
+Loaded plugins: priorities, update-motd, upgrade-helper
+Resolving Dependencies
+--> Running transaction check
+---> Package docker.x86_64 0:18.03.1ce-5.0.amzn1 will be installed
+--> Processing Dependency: xfsprogs for package: docker-18.03.1ce-5.0.amzn1.x86_                                                                             64
+--> Processing Dependency: libseccomp.so.2()(64bit) for package: docker-18.03.1c                                                                             e-5.0.amzn1.x86_64
+--> Processing Dependency: libltdl.so.7()(64bit) for package: docker-18.03.1ce-5                                                                             .0.amzn1.x86_64
+--> Running transaction check
+---> Package libseccomp.x86_64 0:2.3.1-2.4.amzn1 will be installed
+---> Package libtool-ltdl.x86_64 0:2.4.2-20.4.8.5.32.amzn1 will be installed
+---> Package xfsprogs.x86_64 0:4.5.0-9.21.amzn1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package          Arch       Version                     Repository        Size
+================================================================================
+Installing:
+ docker           x86_64     18.03.1ce-5.0.amzn1         amzn-updates      40 M
+Installing for dependencies:
+ libseccomp       x86_64     2.3.1-2.4.amzn1             amzn-main         79 k
+ libtool-ltdl     x86_64     2.4.2-20.4.8.5.32.amzn1     amzn-main         51 k
+ xfsprogs         x86_64     4.5.0-9.21.amzn1            amzn-main        1.7 M
+
+Transaction Summary
+================================================================================
+Install  1 Package (+3 Dependent packages)
+
+Total download size: 42 M
+Installed size: 141 M
+Downloading packages:
+(1/4): libtool-ltdl-2.4.2-20.4.8.5.32.amzn1.x86_64.rpm     |  51 kB   00:00
+(2/4): libseccomp-2.3.1-2.4.amzn1.x86_64.rpm               |  79 kB   00:00
+(3/4): xfsprogs-4.5.0-9.21.amzn1.x86_64.rpm                | 1.7 MB   00:01
+(4/4): docker-18.03.1ce-5.0.amzn1.x86_64.rpm               |  40 MB   00:14
+--------------------------------------------------------------------------------
+Total                                              3.0 MB/s |  42 MB  00:14
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libseccomp-2.3.1-2.4.amzn1.x86_64                            1/4
+  Installing : libtool-ltdl-2.4.2-20.4.8.5.32.amzn1.x86_64                  2/4
+  Installing : xfsprogs-4.5.0-9.21.amzn1.x86_64                             3/4
+  Installing : docker-18.03.1ce-5.0.amzn1.x86_64                            4/4
+  Verifying  : xfsprogs-4.5.0-9.21.amzn1.x86_64                             1/4
+  Verifying  : libtool-ltdl-2.4.2-20.4.8.5.32.amzn1.x86_64                  2/4
+  Verifying  : docker-18.03.1ce-5.0.amzn1.x86_64                            3/4
+  Verifying  : libseccomp-2.3.1-2.4.amzn1.x86_64                            4/4
+
+Installed:
+  docker.x86_64 0:18.03.1ce-5.0.amzn1
+
+Dependency Installed:
+  libseccomp.x86_64 0:2.3.1-2.4.amzn1
+  libtool-ltdl.x86_64 0:2.4.2-20.4.8.5.32.amzn1
+  xfsprogs.x86_64 0:4.5.0-9.21.amzn1
+
+Complete!
+[ec2-user@ip-172-31-89-65 ~]$ docker -v
+Docker version 18.03.1-ce, build 3dfb8343b139d6342acfd9975d7f1068b5b1c3d3
+[ec2-user@ip-172-31-89-65 ~]$ sudo service docker start
+Starting cgconfig service:                                 [  OK  ]
+Starting docker:        .                                  [  OK  ]
+[ec2-user@ip-172-31-89-65 ~]$ sudo usermod -a -G docker ec2-user
+
+
+[ec2-user@ip-172-31-89-65 ~]$ sudo docker info
+Containers: 0
+ Running: 0
+ Paused: 0
+ Stopped: 0
+Images: 0
+Server Version: 18.03.1-ce
+Storage Driver: overlay2
+ Backing Filesystem: extfs
+ Supports d_type: true
+ Native Overlay Diff: true
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: bridge host macvlan null overlay
+ Log: awslogs fluentd gcplogs gelf journald json-file logentries splunk syslog
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Init Binary: docker-init
+containerd version: 773c489c9c1b21a6d78b5c538cd395416ec50f88
+runc version: 4fc53a81fb7c994640722ac585fa9ca548971871
+init version: 949e6fa
+Security Options:
+ seccomp
+  Profile: default
+Kernel Version: 4.14.62-65.117.amzn1.x86_64
+Operating System: Amazon Linux AMI 2018.03
+OSType: linux
+Architecture: x86_64
+CPUs: 1
+Total Memory: 985.8MiB
+Name: ip-172-31-89-65
+ID: ADR2:6NLZ:S3XT:DYEP:7XA4:MO46:IBX6:PVKT:ASCG:TDWU:SRIN:RTFP
+Docker Root Dir: /var/lib/docker
+Debug Mode (client): false
+Debug Mode (server): false
+Registry: https://index.docker.io/v1/
+Labels:
+Experimental: false
+Insecure Registries:
+ 127.0.0.0/8
+Live Restore Enabled: false
+
+[ec2-user@ip-172-31-89-65 ~]$ docker info
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docke                                                           r.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.37/info: dial unix /var/run/docker.sock: connect:                                                            permission denied
+[ec2-user@ip-172-31-89-65 ~]$ sudo service docker stop
+Stopping docker:                                           [  OK  ]
+[ec2-user@ip-172-31-89-65 ~]$ sudo yum remove docker
+Loaded plugins: priorities, update-motd, upgrade-helper
+Resolving Dependencies
+--> Running transaction check
+---> Package docker.x86_64 0:18.03.1ce-5.0.amzn1 will be erased
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=============================================================================================================================================================
+ Package                         Arch                            Version                                        Repository                              Size
+=============================================================================================================================================================
+Removing:
+ docker                          x86_64                          18.03.1ce-5.0.amzn1                            @amzn-updates                          137 M
+
+Transaction Summary
+=============================================================================================================================================================
+Remove  1 Package
+
+Installed size: 137 M
+Is this ok [y/N]: y
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Erasing    : docker-18.03.1ce-5.0.amzn1.x86_64                                                                                                         1/1
+  Verifying  : docker-18.03.1ce-5.0.amzn1.x86_64                                                                                                         1/1
+
+Removed:
+  docker.x86_64 0:18.03.1ce-5.0.amzn1
+
+Complete!
+[ec2-user@ip-172-31-89-65 ~]$

@@ -1,0 +1,189 @@
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git init
+Reinitialized existing Git repository in D:/GITREPO/RemREPO/.git/
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   info.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   info.txt
+
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git add .
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git commit -m "Info File added"
+[master (root-commit) a2c600d] Info File added
+ 1 file changed, 1 insertion(+)
+ create mode 100644 info.txt
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git branch branch1
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git branch branch2
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git branch -d branch1
+Deleted branch branch1 (was a2c600d).
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git branch -d branch2
+Deleted branch branch2 (was a2c600d).
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git branch development
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git branch testing
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git push --all origin
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git remote add origin https://github.com/rasingha/RemREPO.                                                                  git
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git push -u origin master
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 225 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/rasingha/RemREPO.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from orig                                                                  in.
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git push -all origin
+error: did you mean `--all` (with two dashes ?)
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$ git push --all origin
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/rasingha/RemREPO.git
+ * [new branch]      development -> development
+ * [new branch]      testing -> testing
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/RemREPO (master)
+$
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ git remote add origin "https://github.com/rasingha/ARemote.git"
+fatal: remote origin already exists.
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ git remote add org "https://github.com/rasingha/ARemote.git"
+fatal: remote org already exists.
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ git remote add orgn "https://github.com/rasingha/ARemote.git"
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ git pull orgn development
+warning: no common commits
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/rasingha/ARemote
+ * branch            development -> FETCH_HEAD
+ * [new branch]      development -> orgn/development
+fatal: refusing to merge unrelated histories
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ git pull
+remote: Repository not found.
+fatal: repository 'https://github.com/rasingha/REPOAA.git/' not found
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ git status
+On branch master
+Your branch is up-to-date with 'org/master'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    ../../file1.xlsx
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ../
+        ../../RemREPO/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ ls
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ ls -a
+./  ../
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ git branch
+* master
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ git branch -a
+* master
+  remotes/org/master
+  remotes/orgn/development
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (master)
+$ git checkout development
+Branch development set up to track remote branch development from orgn.
+Switched to a new branch 'development'
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (development)
+$ git branch
+* development
+  master
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/CDeveloper (development)
+$
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1 (development)
+$ cd DTester
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/DTester (development)
+$ git pul orgn testing
+git: 'pul' is not a git command. See 'git --help'.
+
+Did you mean one of these?
+        pull
+        push
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/DTester (development)
+$ git pull orgn testing
+From https://github.com/rasingha/ARemote
+ * branch            testing    -> FETCH_HEAD
+ * [new branch]      testing    -> orgn/testing
+Already up-to-date.
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/DTester (development)
+$ git checkout testing
+Branch testing set up to track remote branch testing from orgn.
+Switched to a new branch 'testing'
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/DTester (testing)
+$ git branch
+  development
+  master
+* testing
+
+rasingha@DIN51002647 MINGW64 /d/GITREPO/Ass1/DTester (testing)
+$
